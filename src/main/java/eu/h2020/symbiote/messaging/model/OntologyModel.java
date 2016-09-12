@@ -2,39 +2,41 @@ package eu.h2020.symbiote.messaging.model;
 
 import eu.h2020.symbiote.model.RDFFormat;
 
+import java.math.BigInteger;
+
 /**
  * Created by Mael on 07/09/2016.
  */
 public class OntologyModel {
 
-    private Long id;
-    private String body;
+    private BigInteger id;
+    private String instance;
     private RDFFormat format;
 
     OntologyModel() {
 
     }
 
-    public OntologyModel(Long id, String body, RDFFormat format) {
+    public OntologyModel(BigInteger id, String instance, RDFFormat format) {
         this.id = id;
-        this.body = body;
+        this.instance = instance;
         this.format = format;
     }
 
-    public Long getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 
-    public String getBody() {
-        return body;
+    public String getInstance() {
+        return instance;
     }
 
-    public void setBody(String body) {
-        this.body = body;
+    public void setInstance(String body) {
+        this.instance = body;
     }
 
     public RDFFormat getFormat() {
