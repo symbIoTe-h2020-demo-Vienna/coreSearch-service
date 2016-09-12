@@ -52,7 +52,7 @@ public class MessagingSubscriptions {
         Channel channel = connection.createChannel();
 
         channel.queueDeclare(queueName, false, false, false, null);
-        log.info("Receiver waiting for messages....");
+        log.info("Receiver waiting for messages in queue " + queueName + " ....");
         return channel;
     }
 }

@@ -2,7 +2,7 @@ package eu.h2020.symbiote.messaging;
 
 import com.rabbitmq.client.Channel;
 import eu.h2020.symbiote.messaging.model.OntologyModel;
-import eu.h2020.symbiote.search.SearchStore;
+import eu.h2020.symbiote.search.SearchStorage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -25,7 +25,7 @@ public class ModelCreatedConsumer extends SymbioteMessageConsumer<OntologyModel>
     @Override
     protected void handleEventObject(OntologyModel deliveredObject) {
         log.info("Search received message about created model " + deliveredObject.getId());
-        SearchStore.getSingleton().registerModel(deliveredObject);
+        SearchStorage.getInstance().registerModel(deliveredObject);
     }
 
 }

@@ -3,32 +3,34 @@ package eu.h2020.symbiote.messaging.model;
 
 import eu.h2020.symbiote.model.RDFFormat;
 
+import java.math.BigInteger;
+
 /**
  * Created by Mael on 30/08/2016.
  */
 public class Platform {
 
-	private Long id;
+	private BigInteger id;
 	private String instance;
 	private RDFFormat format;
-	private Long modelId;
+	private BigInteger modelId;
 
 	Platform() {
 
 	}
 
-	public Platform(Long id, String instance, RDFFormat format, Long modelId) {
+	public Platform(BigInteger id, String instance, RDFFormat format, BigInteger modelId) {
 		this.id = id;
 		this.instance = instance;
 		this.format = format;
 		this.modelId = modelId;
 	}
 
-	public Long getId() {
+	public BigInteger getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(BigInteger id) {
 		this.id = id;
 	}
 
@@ -48,11 +50,11 @@ public class Platform {
 		this.format = format;
 	}
 
-	public Long getModelId() {
+	public BigInteger getModelId() {
 		return modelId;
 	}
 
-	public void setModelId(Long modelId) {
+	public void setModelId(BigInteger modelId) {
 		this.modelId = modelId;
 	}
 }

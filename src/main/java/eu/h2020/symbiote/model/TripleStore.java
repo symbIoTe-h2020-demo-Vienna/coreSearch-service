@@ -22,11 +22,14 @@ import java.util.List;
  */
 public class TripleStore {
 
+    private final String currentDirectory;
     private final Dataset dataset;
 
-    public TripleStore( ) {
-        dataset = TDBFactory.createDataset();
+    public TripleStore( String directory ) {
+        currentDirectory = directory;
+        dataset = TDBFactory.createDataset(currentDirectory);
     }
+
 
     public void insertGraph(String uri, String rdf, RDFFormat format) {
         Model model = ModelFactory.createDefaultModel();

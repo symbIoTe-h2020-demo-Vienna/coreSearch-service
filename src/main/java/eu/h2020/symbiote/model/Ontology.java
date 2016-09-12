@@ -5,6 +5,8 @@
  */
 package eu.h2020.symbiote.model;
 
+import java.math.BigInteger;
+
 /**
  *
  * @author jab
@@ -45,24 +47,24 @@ public class Ontology {
 
     }
 
-    public static String getModelGraphURI(long modelId) {
+    public static String getModelGraphURI(BigInteger modelId) {
         return MODELS_GRAPH + "/" + modelId;
     }
 
-    public static String getPlatformGraphURI(long platformId) {
+    public static String getPlatformGraphURI(BigInteger platformId) {
         return PLATFORMS_GRAPH + "/" + platformId;
     }
 
-    public static String getMappingGraphURI(long mappingId) {
+    public static String getMappingGraphURI(BigInteger mappingId) {
         return MAPPING_GRAPH + "/" + mappingId;
     }
 
-    public static String getPlatformMetadata(long platformId, long modelId) {
+    public static String getPlatformMetadata(BigInteger platformId, BigInteger modelId) {
         return "<" + getPlatformGraphURI(platformId) + "> <" + IS_A + "> <" + PLATFORM + "> ." + "\n"
                 + "<" + getPlatformGraphURI(platformId) + "> <" + USES + "> <" + getModelGraphURI(modelId) + "> .";
     }
 
-    public static String getMappingMetadata(long modelId1, long modelId2, long mappingId) {
+    public static String getMappingMetadata(BigInteger modelId1, BigInteger modelId2, BigInteger mappingId) {
         return "<" + getMappingGraphURI(mappingId) + "> <" + IS_A + "> <" + MAPPING + "> ." + "\n"
                 + "<" + getMappingGraphURI(mappingId) + "> <" + FROM + "> <" + getModelGraphURI(modelId1) + "> . \n"
                 + "<" + getMappingGraphURI(mappingId) + "> <" + TO + "> <" + getModelGraphURI(modelId2) + "> .";

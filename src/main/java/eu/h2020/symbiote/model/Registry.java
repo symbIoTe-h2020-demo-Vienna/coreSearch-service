@@ -7,6 +7,8 @@ package eu.h2020.symbiote.model;
 
 import fr.inrialpes.exmo.align.impl.renderer.RDFRendererVisitor;
 import fr.inrialpes.exmo.align.parser.AlignmentParser;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.semanticweb.owl.align.AlignmentException;
@@ -14,6 +16,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.math.BigInteger;
+import java.util.List;
 
 /**
  *
@@ -21,22 +25,26 @@ import java.io.*;
  */
 public class Registry {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Registry.class);
+    private static Log log = LogFactory.getLog( Registry.class );
     private final TripleStore tripleStore;
 
     public Registry(TripleStore tripleStore) {
+
         this.tripleStore = tripleStore;
+        log.info("Creating Registry, loading stored data");
+//        List<String> data = tripleStore.loadDataFromDataset();
+        log.info("Data loaded!" );
     }
 
-    public void registerModel(Long modelId, String rdf, RDFFormat format) {
+    public void registerModel(BigInteger modelId, String rdf, RDFFormat format) {
         tripleStore.insertGraph(Ontology.getModelGraphURI(modelId), rdf, format);
-        LOGGER.debug("model registered: modelId={}, format={}, rdf={}", modelId, format, rdf);
+        log.debug(String.format("model registered: modelId={}, format={}, rdf={}", modelId, format, rdf));
     }
 
-    public void registerPlatform(long platformId, String metadata, RDFFormat format, long modelId) {
-        tripleStore.insertGraph(Ontology.getPlatformGraphURI(platformId), metadata, format);
+    public void registerPlatform(BigInteger platformId, String rdf, RDFFormat format, BigInteger modelId) {
+        tripleStore.insertGraph(Ontology.getPlatformGraphURI(platformId), rdf, format);
         tripleStore.insertGraph(Ontology.PLATFORMS_GRAPH, Ontology.getPlatformMetadata(platformId, modelId), format);
-        LOGGER.debug("platform registered: platformId={}, modelId={}, format={}, rdf={}", platformId, modelId, format, metadata);
+        log.debug(String.format("platform registered: platformId={}, modelId={}, format={}, rdf={}", platformId, modelId, format, rdf));
     }
 
 //    public int registerMapping(int modelId1, int modelId2, String mapping) throws UnsupportedEncodingException {

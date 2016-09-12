@@ -2,7 +2,7 @@ package eu.h2020.symbiote.messaging;
 
 import com.rabbitmq.client.Channel;
 import eu.h2020.symbiote.messaging.model.Platform;
-import eu.h2020.symbiote.search.SearchStore;
+import eu.h2020.symbiote.search.SearchStorage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -25,6 +25,6 @@ public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform>{
     @Override
     protected void handleEventObject(Platform deliveredObject) {
         log.info("Search recived message about created platform " + deliveredObject.getId());
-        SearchStore.getSingleton().registerPlatform(deliveredObject);
+        SearchStorage.getInstance().registerPlatform(deliveredObject);
     }
 }
