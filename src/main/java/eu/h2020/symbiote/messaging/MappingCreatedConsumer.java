@@ -1,7 +1,8 @@
 package eu.h2020.symbiote.messaging;
 
 import com.rabbitmq.client.Channel;
-import org.apache.catalina.servlet4preview.http.Mapping;
+import eu.h2020.symbiote.messaging.model.Mapping;
+import eu.h2020.symbiote.search.SearchStorage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -23,6 +24,7 @@ public class MappingCreatedConsumer extends SymbioteMessageConsumer<Mapping>{
 
     @Override
     protected void handleEventObject(Mapping deliveredObject) {
-        log.warn("Mapping created consumer not implemented yet");
+        log.info("Search received message about created mapping " + deliveredObject.getId());
+        SearchStorage.getInstance().registerMapping(deliveredObject);
     }
 }

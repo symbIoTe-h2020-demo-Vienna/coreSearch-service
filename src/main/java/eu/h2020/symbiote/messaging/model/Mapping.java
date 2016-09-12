@@ -1,23 +1,34 @@
 package eu.h2020.symbiote.messaging.model;
 
+import java.math.BigInteger;
+
 /**
  * Created by Mael on 08/09/2016.
  */
 public class Mapping {
 
-    private int modelId1;
-    private int modelId2;
+    private BigInteger id;
+    private BigInteger modelId1;
+    private BigInteger modelId2;
     private String mapping;
 
     public Mapping() {
     }
 
-    public Mapping(String mapping, int modelId1, int modelId2) {
+    public Mapping(BigInteger id, String mapping, BigInteger modelId1, BigInteger modelId2) {
+        this.id = id;
         this.mapping = mapping;
         this.modelId1 = modelId1;
         this.modelId2 = modelId2;
     }
 
+    public BigInteger getId() {
+        return id;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
 
     public String getMapping() {
         return mapping;
@@ -27,19 +38,19 @@ public class Mapping {
         this.mapping = mapping;
     }
 
-    public int getModelId1() {
+    public BigInteger getModelId1() {
         return modelId1;
     }
 
-    public void setModelId1(int modelId1) {
+    public void setModelId1(BigInteger modelId1) {
         this.modelId1 = modelId1;
     }
 
-    public int getModelId2() {
+    public BigInteger getModelId2() {
         return modelId2;
     }
 
-    public void setModelId2(int modelId2) {
+    public void setModelId2(BigInteger modelId2) {
         this.modelId2 = modelId2;
     }
 }

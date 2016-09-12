@@ -3,6 +3,7 @@ package eu.h2020.symbiote.search;
 
 import com.google.gson.Gson;
 import eu.h2020.symbiote.CoreSearchServiceApplication;
+import eu.h2020.symbiote.messaging.model.Mapping;
 import eu.h2020.symbiote.messaging.model.OntologyModel;
 import eu.h2020.symbiote.messaging.model.Platform;
 import eu.h2020.symbiote.model.Registry;
@@ -14,6 +15,7 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 /**
@@ -55,32 +57,6 @@ public class SearchStorage {
         return storage;
     }
 
-//    public String store( Platform platform ) {
-//        long platformId = -1;
-//        log.info( "==================================================");
-//        log.info( "Adding platform ");
-//        log.info( "model: [");
-//        log.info( platform.getModel());
-//        log.info( "]");
-//        log.info( "");
-//        log.info( "instance: [");
-//        log.info( platform.getInstance());
-//        log.info( "]");
-//        log.info( "==================================================");
-//
-//
-//        long modelId = registerModel(platform);
-//        if( modelId >= 0 ) {
-//            PlatformRegistrationPublisher.getInstance().sendModelCreatedMessage(modelId, platform.getModel(),platform.getFormat());
-//
-//            platformId = registerInstance(modelId, platform);
-//            PlatformRegistrationPublisher.getInstance().sendPlatformCreatedMessage(modelId,platform);
-//        }
-//
-//        log.info(" >>>>>>>>> PLATFORM (and model) CREATED [ " + platformId + " ]  <<<<<<<<<<<");
-//        return Ontology.getPlatformGraphURI(platformId);
-//    }
-
     /**
      * Registers ontology model in the search engine, using specified model's id to generate model graph uri.
      *
@@ -101,6 +77,16 @@ public class SearchStorage {
         log.info( "Registering platform in search " + platform.getId() + " ...");
         core.registerPlatform(platform.getId(),platform.getInstance(), platform.getFormat(),platform.getModelId());
         log.info( "Platform registered!");
+    }
+
+    public void registerMapping(Mapping mapping ) {
+        log.info( "Registering mapping in search " + mapping.getId() + " ...");
+        try {
+            core.registerMapping(mapping.getId(),mapping.getModelId1(),mapping.getModelId2(),mapping.getMapping());
+        } catch (UnsupportedEncodingException e) {
+            log.error("Error when registering mapping in the core search", e);
+        }
+        log.info( "Mapping registered!");
     }
 
     public String query( String modelGraphUri, String query) {
