@@ -6,18 +6,19 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 public class CoreSearchServiceApplication {
 
 	public static final String DIRECTORY = "/corePlatformTriplestore";
 
 	private static Log log = LogFactory.getLog(CoreSearchServiceApplication.class);
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(CoreSearchServiceApplication.class, args);
@@ -31,8 +32,6 @@ public class CoreSearchServiceApplication {
 	@RestController
 	class RegistrationController {
 
-
-
 		public RegistrationController() {
 		}
 
@@ -44,5 +43,4 @@ public class CoreSearchServiceApplication {
 			return result;
 		}
 	}
-
 }
