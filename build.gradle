@@ -21,6 +21,7 @@ jar {
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 
 
@@ -32,8 +33,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('com.google.code.gson:gson:2.7')
-    compile('com.google.guava:guava:19.0')
-    compile files('libs/MediationFramework-1.0-SNAPSHOT-jar-with-dependencies.jar')
+    compile('com.google.guava:guava:19.+')
+    compile 'com.github.symbiote-h2020:mediationFramework:b2a4829d3f'
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
