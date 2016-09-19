@@ -1,8 +1,5 @@
 package eu.h2020.symbiote;
 
-/**
- * Created by Mael on 07/09/2016.
- */
 public class SearchObject {
     private String modelGraphUri;
     private String query;
