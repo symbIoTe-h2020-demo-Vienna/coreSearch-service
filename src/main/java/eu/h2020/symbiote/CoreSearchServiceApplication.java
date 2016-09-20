@@ -7,10 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -29,6 +26,7 @@ public class CoreSearchServiceApplication {
 		}
 	}
 
+	@CrossOrigin
 	@RestController
 	class RegistrationController {
 
